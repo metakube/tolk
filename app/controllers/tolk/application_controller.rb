@@ -1,3 +1,6 @@
+require 'tolk/sync'
+require 'tolk/import'
+
 module Tolk
   class ApplicationController < ActionController::Base
     helper :all
