@@ -95,8 +95,16 @@ module Tolk
         secondary_locales.each do |locale|
           File.open("#{to}/#{locale.name}.yml", "w+") do |file|
             data = locale.to_hash
-            data.respond_to?(:ya2yaml) ? file.write(data.ya2yaml(:syck_compatible => true)) : YAML.dump(locale.to_hash, file)
+            data.respond_to?(:ya2yaml) ? file.write(data.ya2yaml(:syck_compatible => true)) : YAML.dump(data, file)
           end
+        end
+      end
+
+      def dump_primary(to = self.locales_config_path)
+        locale = primary_locale
+        File.open("#{to}/#{locale.name}_tolk.yml", "w+") do |file| # don't overwrite the main file if it exists
+          data = locale.to_hash
+          data.respond_to?(:ya2yaml) ? file.write(data.ya2yaml(:syck_compatible => true)) : YAML.dump(data, file)
         end
       end
 

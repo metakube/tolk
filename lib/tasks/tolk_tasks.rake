@@ -18,6 +18,11 @@ namespace :tolk do
     Tolk::Locale.dump_all
   end
 
+  desc "Generate yml file for the primary locale"
+  task :dump_all => :environment do
+    Tolk::Locale.dump_primary
+  end
+
   desc "Imports data all non default locale yml files to Tolk"
   task :import => :environment do
     Rake::Task['tolk:sync'].invoke
