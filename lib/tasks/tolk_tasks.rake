@@ -19,7 +19,7 @@ namespace :tolk do
   end
 
   desc "Generate yml file for the primary locale"
-  task :dump_all => :environment do
+  task :dump_primary => :environment do
     Tolk::Locale.dump_primary
   end
 
